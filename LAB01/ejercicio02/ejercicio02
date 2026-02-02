@@ -1,1 +1,44 @@
+% Hechos: relación entre ciudades
+ciudad(bogota).
+ciudad(medellin).
+ciudad(cali).
+ciudad(cartagena).
+ciudad(manizales).
+ciudad(barranquilla).
+ciudad(pasto).
+ciudad(monteria).
 
+% Hechos: vuelos directos
+vuelo(bogota, medellin).
+vuelo(medellin, cartagena).
+vuelo(cali, bogota).
+vuelo(bogota, cartagena).
+vuelo(manizales, cartagena).
+vuelo(medellin, barranquilla).
+vuelo(pasto, bogota).
+vuelo(bogota, pasto).
+
+perro(firulais).
+perro(bruno).
+perro(max).
+gato(misu).
+gato(luna).
+gato(chanel).
+gato(orion).
+ave(piolin).
+
+dueno(ana, firulais).
+dueno(ana, misu).
+dueno(luis, luna).
+dueno(luis, orion).
+dueno(luis, firulais).
+dueno(maria, piolin).
+dueno(julia, chanel).
+dueno(pedro, bruno).
+
+escala(X, Y, Z) :- (ciudad(X), ciudad(Y), ciudad(Z), vuelo(X, Y), vuelo(Y, Z)).
+
+verificacion(X, _, Y) :- (vuelo(X, Y), ciudad(X), ciudad(Y)).
+verificacion(X, Y, Z) :- (ciudad(X), ciudad(Y), ciudad(Z), vuelo(X, Y), vuelo(Y, Z)).
+
+destinos(X, Y) :- (vuelo(X, Y), ciudad(X), ciudad(Y)).
